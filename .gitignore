@@ -1,0 +1,6 @@
+# IDE Specifics
+
+hr-portal-be.iml
+.idea
+target
+src/main/main.iml
