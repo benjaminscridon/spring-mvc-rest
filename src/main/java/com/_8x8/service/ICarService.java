@@ -17,4 +17,6 @@ public interface ICarService {
     Car updateCar(Car oldCar) throws Exception;
 
     void deleteCar(Long id);
+
+    // public List<Car> findCarByOwnerId(Long id);
 }

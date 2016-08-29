@@ -54,4 +54,12 @@ public class CarService implements ICarService {
     public void deleteCar(Long id) {
         carRepository.delete(id);
     }
+
+
+    /*
+    @Override
+    public List<Car> findCarByOwnerId(Long id){
+        return carRepository.findCarByOwnerId(id);
+    }
+    */
 }
