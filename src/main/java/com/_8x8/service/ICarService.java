@@ -18,5 +18,6 @@ public interface ICarService {
 
     void deleteCar(Long id);
 
-    // public List<Car> findCarByOwnerId(Long id);
+    List<Car> findByColor(String color);
+
 }

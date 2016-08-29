@@ -55,11 +55,10 @@ public class CarService implements ICarService {
         carRepository.delete(id);
     }
 
-
-    /*
     @Override
-    public List<Car> findCarByOwnerId(Long id){
-        return carRepository.findCarByOwnerId(id);
+    public List<Car> findByColor(String color) {
+        return carRepository.findByColor(color);
     }
-    */
+
+
 }

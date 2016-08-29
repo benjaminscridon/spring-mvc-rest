@@ -74,10 +74,12 @@ public class CarController {
         carService.deleteCar(id);
     }
 
-    /*
-    @ApiOperation(value = "findCarByOwnerId", notes = "Find car by owner id")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Car> find(@PathVariable("id") Long id) {
-       return carService.findCarByOwnerId(id);
-    }*/
+
+    @ApiOperation(value = "findByColor", notes = "Find car by color")
+    @RequestMapping(value = "/{color}/cars", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Car> findByColor(@PathVariable("color") String color)  {
+        return carService.findByColor(color);
+    }
+
+
 }

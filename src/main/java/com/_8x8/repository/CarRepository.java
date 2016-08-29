@@ -13,8 +13,7 @@ import java.util.List;
  */
 @Repository
 public interface CarRepository extends JpaRepository<Car,Long> {
-   /*
-    @Query("Select c from Car c where c.owner = :id")
-    List<Car> findCarByOwnerId(Long id);
-    */
+
+    List<Car> findByColor(String color);
+
 }

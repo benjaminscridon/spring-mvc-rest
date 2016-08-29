@@ -49,4 +49,9 @@ public class OwnerService implements IOwnerService {
         ownerRepository.delete(id);
 
     }
+
+    @Override
+    public Owner findByEmailAddress(String email) {
+        return ownerRepository.findByEmailAddress(email);
+    }
 }
