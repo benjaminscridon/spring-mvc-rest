@@ -3,31 +3,46 @@ package com._8x8.model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by bscridon on 29.08.2016.
  */
 
 @Entity
-@Table(name = "masina")
+@Table(name = "car")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nume")
+    @Column(name = "name")
     private String name;
-    @Column(name = "culoare")
+    @Column(name = "color")
     private String color;
 
-    @ManyToOne
-    @JoinColumn(name="id_proprietar")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
     private Owner owner;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "car_inspection_station", joinColumns = {
+            @JoinColumn(name = "car_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "inspection_station_id",
+                    nullable = false, updatable = false)})
+    private Set<InspectionStation> inspectionStations;
+
+    public Set<InspectionStation> getInspectionStations() {
+        return inspectionStations;
+    }
+
+    public void setInspectionStations(Set<InspectionStation> inspectionStations) {
+        this.inspectionStations = inspectionStations;
+    }
 
     public Owner getOwner() {
         return owner;
     }
-
 
     public void setOwner(Owner owner) {
         this.owner = owner;
