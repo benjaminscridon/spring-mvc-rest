@@ -70,7 +70,7 @@ public class OwnerController {
     }
 
     @ApiOperation(value = " findByEmailAddress", notes = "Find by email address")
-    @RequestMapping(value= "/{email}/owner",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value= "/email/{email}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Owner findByEmailAddress(@PathVariable String email) {
         return ownerService.findByEmailAddress(email);
     }

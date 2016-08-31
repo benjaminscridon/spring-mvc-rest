@@ -1,7 +1,9 @@
 package com._8x8.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.mapping.Collection;
 import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,16 +27,18 @@ public class Owner {
 
     //unidirectional relationship
     @OneToOne
-    @JoinColumn(name = "home_address_id", unique = true, nullable = false)
+    @JoinColumn(name = "home_address_id", unique = true)
     private Address homeAddress;
 
     //Represents one-to-one relationship between Owner and User classes, bidirectional relationship
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", unique = true, nullable = false)
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "owner")
-    List<Car> cars;
+    private List<Car> cars;
+
 
     public List<Car> getCars() {
         return cars;
@@ -82,5 +86,32 @@ public class Owner {
 
     public void setHomeAddress(Address homeAddress) {
         this.homeAddress = homeAddress;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Owner owner = (Owner) o;
+
+        if (id != null ? !id.equals(owner.id) : owner.id != null) return false;
+        if (name != null ? !name.equals(owner.name) : owner.name != null) return false;
+        if (email != null ? !email.equals(owner.email) : owner.email != null) return false;
+        if (homeAddress != null ? !homeAddress.equals(owner.homeAddress) : owner.homeAddress != null) return false;
+        if (user != null ? !user.equals(owner.user) : owner.user != null) return false;
+        return cars != null ? cars.equals(owner.cars) : owner.cars == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (homeAddress != null ? homeAddress.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (cars != null ? cars.hashCode() : 0);
+        return result;
     }
 }

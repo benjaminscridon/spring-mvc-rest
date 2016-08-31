@@ -43,4 +43,25 @@ public class InspectionStation {
     public void setCars(Set<Car> cars) {
         this.cars = cars;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        InspectionStation that = (InspectionStation) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (location != null ? !location.equals(that.location) : that.location != null) return false;
+        return cars != null ? cars.equals(that.cars) : that.cars == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + (cars != null ? cars.hashCode() : 0);
+        return result;
+    }
 }

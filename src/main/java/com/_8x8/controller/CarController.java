@@ -76,7 +76,7 @@ public class CarController {
 
 
     @ApiOperation(value = "findByColor", notes = "Find car by color")
-    @RequestMapping(value = "/{color}/cars", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/color/{color}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Car> findByColor(@PathVariable("color") String color)  {
         return carService.findByColor(color);
     }
